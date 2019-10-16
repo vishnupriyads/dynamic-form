@@ -1,0 +1,23 @@
+<div class="container">
+    <h3>Form Details</h3>
+    <div class="row">
+        <div class="form-group col-md-4" *ngFor="let field of formData">
+            <label>{{field.label}}</label>
+            <input *ngIf="field.fieldType == 'input'" class="form-control" type="{{field.inputType}}" id="{{field.id}}"
+                placeholder="{{field.placeholder}}" name="{{field.name}}" (keyup)="onFieldChange($event, field.name)">
+            <select *ngIf="field.fieldType=='select'" class="form-control" (change)="onFieldChange($event, field.name)">
+                <option *ngFor="let option of field.option" value="{{option.optionValue}}">
+                    {{option.optionToDisplay}}</option>
+            </select>
+            <textarea *ngIf="field.fieldType == 'textarea'" class="form-control" id="{{field.id}}"
+                (keyup)="onFieldChange($event, field.name)" placeholder="{{field.placeholder}}" name="{{field.name}}"
+                rows="3"> </textarea>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="card">
+        <h5>{{formDetails.key}} : {{formDetails.value}}</h5>
+    </div>
+</div>
